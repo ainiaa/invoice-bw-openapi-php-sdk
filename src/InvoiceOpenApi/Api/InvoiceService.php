@@ -8,15 +8,21 @@ use InvoiceOpenApi\VO\FormatfileQueryRequestVO;
 use InvoiceOpenApi\VO\CompanySearchRequestVO;
 use InvoiceOpenApi\VO\EmptyInvoiceQueryRequestVO;
 use InvoiceOpenApi\VO\InvalidInvoiceRequestVO;
+use InvoiceOpenApi\VO\OpenInvoiceRequestVO;
 
 class InvoiceService extends RequestService
 {
     /**
      * 开票
+     *
+     * @param $params
+     *
+     * @return mixed
      */
-    public function openInvoice($params)
+    public function openInvoice(OpenInvoiceRequestVO $vo)
     {
         $method = $this->getMethodByAlias('OPEN_INVOICE');
+        $params = $vo->toArray();
 
         return $this->call($method, $params);
     }
@@ -24,9 +30,10 @@ class InvoiceService extends RequestService
     /**
      * 生成版式文件
      *
-     * @param $params
+     * @param FormatfileBuildRequestVO $vo
      *
-     * @return \stdClass
+     * @return mixed
+     *
      */
     public function formatFileBuild(FormatfileBuildRequestVO $vo)
     {
@@ -38,6 +45,10 @@ class InvoiceService extends RequestService
 
     /**
      * 空白发票查询
+     *
+     * @param EmptyInvoiceQueryRequestVO $vo
+     *
+     * @return mixed
      */
     public function emptyInvoceQuery(EmptyInvoiceQueryRequestVO $vo)
     {
@@ -52,9 +63,7 @@ class InvoiceService extends RequestService
      *
      * @param FormatfileQueryRequestVO $vo
      *
-     * @return \stdClass
-     * @internal param $params
-     *
+     * @return mixed
      */
     public function formatFileQuery(FormatfileQueryRequestVO $vo)
     {

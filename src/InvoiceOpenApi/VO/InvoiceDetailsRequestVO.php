@@ -18,7 +18,7 @@ class InvoiceDetailsRequestVO extends BaseVO
     protected $goodsSpecification;//规格型号
     protected $goodsUnit;//计量单位
     protected $goodsQuantity;//商品数量
-    protected $goodsPrice = 0.00;//商品单价
+    protected $goodsPrice;//商品单价  可以为空 但是不能为0 否则 调用接口报错
     protected $goodsTotalPrice = 0.00;//金额
     protected $goodsTotalTax = 0.00;//税额
     protected $goodsTaxRate;//税率

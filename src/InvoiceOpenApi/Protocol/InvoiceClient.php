@@ -10,11 +10,12 @@ use Exception;
  */
 class InvoiceClient extends CoreClient
 {
+    const  TOKEN_EXPIRED = 100002;//token过期
+
     /**
      * @param $resp
      *
      * @return mixed
-     * @throws Exception
      */
     public function onResponse($resp)
     {
@@ -23,19 +24,41 @@ class InvoiceClient extends CoreClient
             $respObject = json_decode($resp, true);
             if ($respObject === null)
             {
-                throw new Exception('服务器繁忙');
+                return [
+                    'errorCode' => '-1',
+                    'errMsg'    => '服务器繁忙',
+                ];
             }
             if (isset($respObject['response']) && $respObject['response'])
             {
-                return $respObject['response'];
+                return [
+                    'code' => '0000',
+                    'data' => $respObject['response'],
+                ];
             }
             else if (isset($respObject['errorResponse']) && $respObject['errorResponse'])
             { //报错
-                return $respObject['errorResponse'];
+                return [
+                    'errorCode' => '-2',
+                    'errMsg'    => '接口调用失败',
+                    'data'      => $respObject['errorResponse'],
+                ];
+            }
+            else
+            {
+                return [
+                    'errorCode' => '-3',
+                    'errMsg'    => 'unknown',
+                    'data'      => $respObject,
+                ];
             }
         } catch (Exception $e)
         {
-            throw $e;
+            return [
+                'errorCode' => '-4',
+                'errMsg'    => $e->getMessage(),
+                'data'      => get_object_vars($e),
+            ];
         }
     }
 
@@ -71,8 +94,8 @@ class InvoiceClient extends CoreClient
 
         $res   = json_decode($res, true);
         $token = $res['response']['access_token'];
-
-        return $token;
+        return ['token' => $token, 'response' => $res];
+        //return $token;
     }
 
     /**
@@ -94,8 +117,6 @@ class InvoiceClient extends CoreClient
      */
     public function sign($params, $body)
     {
-        //        ksort($params);
-
         $stringToBeSigned = $this->appSecret;
         $stringToBeSigned .= $this->getParamStrFromMap($params);
         if ($body)
@@ -139,7 +160,7 @@ class InvoiceClient extends CoreClient
      */
     public function getRequestUri($method, $params = null)
     {
-        $timestamp    = 1530239296;//time();
+        $timestamp    = time();
         $type         = 'sync';
         $format       = 'json';
         $commonParams = array(
@@ -161,6 +182,23 @@ class InvoiceClient extends CoreClient
             $sign);
 
         return $return;
+    }
+
+    /**
+     * 是否为token过期
+     *
+     * @param $resp
+     *
+     * @return bool
+     */
+    public function isTokenExpired($resp)
+    {
+        if (isset($resp['data']['code']) && $resp['data']['code'] == self::TOKEN_EXPIRED)
+        {//token过期
+            return true;
+        }
+
+        return false;
     }
 
     /**

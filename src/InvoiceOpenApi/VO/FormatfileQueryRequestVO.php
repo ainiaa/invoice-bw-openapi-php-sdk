@@ -9,7 +9,7 @@ class FormatfileQueryRequestVO extends BaseVO
     protected $serialNo;//开票流水号
     protected $invoiceCode;//发票代码
     protected $invoiceNo;//发票号码
-    protected $returnType;
+    protected $returnType;//返回类型 1： URL 2：文件流 3： H5链接
 
     /**
      * @return mixed
@@ -129,6 +129,6 @@ class FormatfileQueryRequestVO extends BaseVO
         $this->returnType = $returnType;
 
         return $this;
-    }//返回类型 1： URL 2：文件流 3： H5链接
+    }
 
 }
