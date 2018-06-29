@@ -4,6 +4,10 @@ namespace InvoiceOpenApi\Api;
 
 use CoreOpenApi\Api\RequestService;
 use InvoiceOpenApi\VO\FormatfileBuildRequestVO;
+use InvoiceOpenApi\VO\FormatfileQueryRequestVO;
+use InvoiceOpenApi\VO\CompanySearchRequestVO;
+use InvoiceOpenApi\VO\EmptyInvoiceQueryRequestVO;
+use InvoiceOpenApi\VO\InvalidInvoiceRequestVO;
 
 class InvoiceService extends RequestService
 {
@@ -28,13 +32,6 @@ class InvoiceService extends RequestService
     {
         $method = $this->getMethodByAlias('FORMATFILE_BUILD');
         $params = $vo->toArray();
-        foreach ($params as $index => $param)
-        {
-            if (is_null($param)) {
-                $params[$index] = '';
-            }
-        }
-//        var_export($params);exit;
 
         return $this->call($method, $params);
     }
@@ -42,9 +39,10 @@ class InvoiceService extends RequestService
     /**
      * 空白发票查询
      */
-    public function emptyInvoceQuery($params)
+    public function emptyInvoceQuery(EmptyInvoiceQueryRequestVO $vo)
     {
         $method = $this->getMethodByAlias('EMPTY_INVOICE_QUERY');
+        $params = $vo->toArray();
 
         return $this->call($method, $params);
     }
@@ -52,13 +50,46 @@ class InvoiceService extends RequestService
     /**
      * 版式文件查询
      *
-     * @param $params
+     * @param FormatfileQueryRequestVO $vo
      *
      * @return \stdClass
+     * @internal param $params
+     *
      */
-    public function formatFileQuery($params)
+    public function formatFileQuery(FormatfileQueryRequestVO $vo)
     {
         $method = $this->getMethodByAlias('FORMATFILE_QUERY');
+        $params = $vo->toArray();
+
+        return $this->call($method, $params);
+    }
+
+    /**
+     * 云抬头获取
+     *
+     * @param CompanySearchRequestVO $vo
+     *
+     * @return mixed
+     */
+    public function companySearch(CompanySearchRequestVO $vo)
+    {
+        $method = $this->getMethodByAlias('COMPANY_SEARCH');
+        $params = $vo->toArray();
+
+        return $this->call($method, $params);
+    }
+
+    /**
+     * 作废发票
+     *
+     * @param InvalidInvoiceRequestVO $vo
+     *
+     * @return mixed
+     */
+    public function invalidInvoice(InvalidInvoiceRequestVO $vo)
+    {
+        $method = $this->getMethodByAlias('INVALID_INVOICE');
+        $params = $vo->toArray();
 
         return $this->call($method, $params);
     }

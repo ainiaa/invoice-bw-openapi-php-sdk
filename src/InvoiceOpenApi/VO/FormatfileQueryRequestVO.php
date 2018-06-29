@@ -2,15 +2,34 @@
 
 namespace InvoiceOpenApi\VO;
 
-class FormatfileBuildRequestVO extends BaseVO
+class FormatfileQueryRequestVO extends BaseVO
 {
+    protected $invoiceQueryType;//查询类型 0：发票代码号码 1：发票流水号 2：保单号
     protected $sellerTaxNo;//纳税人识别号
     protected $serialNo;//开票流水号
     protected $invoiceCode;//发票代码
     protected $invoiceNo;//发票号码
-    protected $pushType;//推送标志 0：不推送 1：推送（邮箱电话必填一个）
-    protected $buyerEmail;//购方客户email
-    protected $buyerPhone;
+    protected $returnType;
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceQueryType()
+    {
+        return $this->invoiceQueryType;
+    }
+
+    /**
+     * @param mixed $invoiceQueryType
+     *
+     * @return FormatfileQueryRequestVO
+     */
+    public function setInvoiceQueryType($invoiceQueryType)
+    {
+        $this->invoiceQueryType = $invoiceQueryType;
+
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -23,7 +42,7 @@ class FormatfileBuildRequestVO extends BaseVO
     /**
      * @param mixed $sellerTaxNo
      *
-     * @return FormatfileBuildRequestVO
+     * @return FormatfileQueryRequestVO
      */
     public function setSellerTaxNo($sellerTaxNo)
     {
@@ -43,7 +62,7 @@ class FormatfileBuildRequestVO extends BaseVO
     /**
      * @param mixed $serialNo
      *
-     * @return FormatfileBuildRequestVO
+     * @return FormatfileQueryRequestVO
      */
     public function setSerialNo($serialNo)
     {
@@ -63,7 +82,7 @@ class FormatfileBuildRequestVO extends BaseVO
     /**
      * @param mixed $invoiceCode
      *
-     * @return FormatfileBuildRequestVO
+     * @return FormatfileQueryRequestVO
      */
     public function setInvoiceCode($invoiceCode)
     {
@@ -83,7 +102,7 @@ class FormatfileBuildRequestVO extends BaseVO
     /**
      * @param mixed $invoiceNo
      *
-     * @return FormatfileBuildRequestVO
+     * @return FormatfileQueryRequestVO
      */
     public function setInvoiceNo($invoiceNo)
     {
@@ -95,61 +114,21 @@ class FormatfileBuildRequestVO extends BaseVO
     /**
      * @return mixed
      */
-    public function getPushType()
+    public function getReturnType()
     {
-        return $this->pushType;
+        return $this->returnType;
     }
 
     /**
-     * @param mixed $pushType
+     * @param mixed $returnType
      *
-     * @return FormatfileBuildRequestVO
+     * @return FormatfileQueryRequestVO
      */
-    public function setPushType($pushType)
+    public function setReturnType($returnType)
     {
-        $this->pushType = $pushType;
+        $this->returnType = $returnType;
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBuyerEmail()
-    {
-        return $this->buyerEmail;
-    }
-
-    /**
-     * @param mixed $buyerEmail
-     *
-     * @return FormatfileBuildRequestVO
-     */
-    public function setBuyerEmail($buyerEmail)
-    {
-        $this->buyerEmail = $buyerEmail;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBuyerPhone()
-    {
-        return $this->buyerPhone;
-    }
-
-    /**
-     * @param mixed $buyerPhone
-     *
-     * @return FormatfileBuildRequestVO
-     */
-    public function setBuyerPhone($buyerPhone)
-    {
-        $this->buyerPhone = $buyerPhone;
-
-        return $this;
-    }//购方客户手机号
+    }//返回类型 1： URL 2：文件流 3： H5链接
 
 }
