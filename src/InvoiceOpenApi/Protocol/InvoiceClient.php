@@ -3,10 +3,6 @@
 namespace InvoiceOpenApi\Protocol;
 
 use CoreOpenApi\Protocol\CoreClient;
-
-//use CoreOpenApi\Api\RequestService;
-//use CoreOpenApi\Config\Config;
-//use stdClass;
 use Exception;
 
 /**
@@ -29,13 +25,13 @@ class InvoiceClient extends CoreClient
             {
                 throw new Exception('服务器繁忙');
             }
-            if ($respObject['response'])
+            if (isset($respObject['response']) && $respObject['response'])
             {
                 return $respObject['response'];
             }
-            else if ($respObject['errorResponse'])
+            else if (isset($respObject['errorResponse']) && $respObject['errorResponse'])
             { //报错
-                return $respObject['response'];
+                return $respObject['errorResponse'];
             }
         } catch (Exception $e)
         {
@@ -58,7 +54,7 @@ class InvoiceClient extends CoreClient
     /**
      * 获取token
      */
-    public function getToken()
+    public function getToken($params)
     {
         $method        = 'baiwang.oauth.token';
         $client_id     = $this->appKey;
@@ -80,12 +76,11 @@ class InvoiceClient extends CoreClient
     }
 
     /**
-     * @todo 还没有实现
      * 刷新token
      */
-    public function refreshToken()
+    public function refreshToken($params)
     {
-
+        return $this->getToken($params);
     }
 
 
@@ -99,7 +94,7 @@ class InvoiceClient extends CoreClient
      */
     public function sign($params, $body)
     {
-        ksort($params);
+        //        ksort($params);
 
         $stringToBeSigned = $this->appSecret;
         $stringToBeSigned .= $this->getParamStrFromMap($params);
@@ -144,30 +139,31 @@ class InvoiceClient extends CoreClient
      */
     public function getRequestUri($method, $params = null)
     {
-        $timestamp    = 1530188192;//time();
+        $timestamp    = 1530239296;//time();
         $type         = 'sync';
         $format       = 'json';
         $commonParams = array(
-                'method'    => $method,
-                'appKey'    => $this->appKey,
-                'token'     => $this->token,
-                'timestamp' => $timestamp,
-                'version'   => $this->config->getParamByKey('version'),
-                'format'    => $format,
-                'type'      => $type,
+            'method'    => $method,
+            'appKey'    => $this->appKey,
+            'token'     => $this->token,
+            'timestamp' => $timestamp,
+            'version'   => $this->config->getParamByKey('version'),
+            'format'    => $format,
+            'type'      => $type,
         );
 
         $body = empty($params) ? '' : $params;
         $sign = $this->sign($commonParams, $body);
         $url  = $this->config->getParamByKey('requestUrl');
 
-        return sprintf('%s?method=%s&version=%s&appKey=%s&format=%s&timestamp=%s&token=%s&type=%s&sign=%s', $url,
-                $method, $this->config->getParamByKey('version'), $this->appKey, $format, $timestamp, $this->token,
-                $type, $sign);
+        $return = sprintf('%s?method=%s&version=%s&appKey=%s&format=%s&timestamp=%s&token=%s&type=%s&sign=%s', $url,
+            $method, $this->config->getParamByKey('version'), $this->appKey, $format, $timestamp, $this->token, $type,
+            $sign);
+
+        return $return;
     }
 
     /**
-     * @TODO 这个需要根据不同的api 实现不同的构建方法
      * 构建请求数据
      */
     public function buildRequestParams($body)
