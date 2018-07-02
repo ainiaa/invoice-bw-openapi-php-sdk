@@ -50,11 +50,11 @@ class OpenInvoiceRequestVO extends BaseVO
         ['buyerName', 'require|max:100', 'invoiceSpecialMark required|invoiceSpecialMark最大长度为：100'],
         [
             'drawer',
-            'require|min:8|max:16',
-            'invoiceSpecialMark required|invoiceSpecialMark最小长度为：68|invoiceSpecialMark最大长度为：16',
+            'require|max:8',
+            'drawer required|drawer最小长度为：8',
         ],
         ['invoiceType', 'require|length:1', 'invoiceType required|invoiceType长度为：1'],
-        ['invoiceListMark', 'require|length:3', 'invoiceListMark required|invoiceListMark长度为：1'],
+        ['invoiceListMark', 'require|length:1', 'invoiceListMark required|invoiceListMark长度为：1'],
         ['taxationMode', 'require|length:1', 'taxationMode required|taxationMode长度为：1'],
         [
             'invoiceTotalPrice',

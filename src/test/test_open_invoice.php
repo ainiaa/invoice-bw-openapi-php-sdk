@@ -9,7 +9,7 @@ use InvoiceOpenApi\Protocol\InvoiceClient;
 //实例化一个配置类
 $config    = include 'config.php';
 $configObj = new Config($config);
-$token     = 'd4776bbb-b08b-4268-9d07-a35631f6de0d';//'f0ba7209-ec18-4855-a661-3607f1fb3b81';//
+$token     = '4b867a5b-e2cb-4509-82a6-789f9b3dd344';//'f0ba7209-ec18-4855-a661-3607f1fb3b81';//
 $client    = new InvoiceClient($token, $configObj);
 //使用config和token对象，实例化一个服务对象
 $invoiceservice = new InvoiceService($client);
@@ -20,15 +20,15 @@ $invoiceservice = new InvoiceService($client);
 //$resp = $invoiceservice->getToken($config);
 //var_export($resp);exit;
 $vo = new InvoiceOpenApi\VO\OpenInvoiceRequestVO();
-$vo->setDeviceType('0')->setSerialNo('cd200000005')->setInvoiceTypeCode('026')->setSellerTaxNo('91500000747150426A');
+$vo->setDeviceType('0')->setSerialNo('cd200000006')->setInvoiceTypeCode('026')->setSellerTaxNo('91500000747150426A');
 $vo->setDrawer('黄惠')->setChecker('邱亚琪')->setPayee('邱亚琪')->setInvoiceType('0');
-$vo->setBuyerName('购买方名字')->setInvoiceTerminalCode('kpyuan002')->setInvoiceSpecialMark("00");
+$vo->setBuyerName('浪淘沙')->setInvoiceTerminalCode('kpyuan002')->setInvoiceSpecialMark("00");
 $vo->setTaxationMode('0')->setInvoiceListMark('0')->setRemarks('注释内容，没有什么');
 $vo->setInvoiceTotalPrice('10')->setInvoiceTotalPriceTax('11.44')->setInvoiceTotalTax('1.44');
 $detailList = [];
 $goodsLineNo = 1;
 $detailVO = new InvoiceOpenApi\VO\InvoiceDetailsRequestVO();
-//$detailVO->setGoodsLineNo($goodsLineNo++);
+$detailVO->setGoodsLineNo($goodsLineNo++);
 $detailVO->setGoodsLineNature('0');
 $detailVO->setGoodsCode('1070508030000000000');
 $detailVO->setGoodsName('葫芦娃222');

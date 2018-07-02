@@ -27,6 +27,7 @@ class InvoiceClient extends CoreClient
                 return [
                     'errorCode' => '-1000',
                     'errMsg'    => '服务器繁忙',
+                    'data'      => $resp,
                 ];
             }
             if (isset($respObject['response']) && $respObject['response'])
@@ -94,6 +95,7 @@ class InvoiceClient extends CoreClient
 
         $res   = json_decode($res, true);
         $token = $res['response']['access_token'];
+
         return ['token' => $token, 'response' => $res];
         //return $token;
     }

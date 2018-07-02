@@ -19,7 +19,6 @@ class InvalidInvoiceRequestVO extends BaseVO
     protected $invoiceInvalidOperator;//作废人
     protected $rule = [
         ['deviceType', 'require|length:1', 'deviceType required|deviceType长度为：1'],
-        ['serialNo', 'require', 'serialNo required'],
         ['sellerTaxNo', 'require|max:20', 'sellerTaxNo required|sellerTaxNo最大长度为：20'],
         ['invoiceTypeCode', 'require|length:3', 'sellerTaxNo required|invoiceTypeCode长度为：3'],
         ['invoiceTerminalCode', 'require|max:30', 'sellerTaxNo required|invoiceTerminalCode最大长度为：30'],

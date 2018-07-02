@@ -21,8 +21,8 @@ $invoiceservice = new InvoiceService($client);
 //var_export($resp);exit;
 
 $vo     = new \InvoiceOpenApi\VO\CompanySearchRequestVO();
-$vo->setAccuracy("true");//是否精准查询
-$vo->setCompanyName("杭州威达计算机网络工程有限公司")->setTaxId("913301107272174037");//公司名和税号
+//$vo->setAccuracy("true");//是否精准查询
+$vo->setCompanyName("杭州威达计算机网络工程有限公司")->setTaxId("");//公司名和税号
 //$vo->setSellerTaxNo('91500000747150426A')->setSerialNo('cd200000004')->setInvoiceNo('82537206')->setPushType('0')->setInvoiceCode('150003521055');
 $resp = $invoiceservice->companySearch($vo);
 

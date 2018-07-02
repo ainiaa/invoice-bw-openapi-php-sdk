@@ -9,7 +9,7 @@ use InvoiceOpenApi\Protocol\InvoiceClient;
 //实例化一个配置类
 $config    = include 'config.php';
 $configObj = new Config($config);
-$token     = 'd4776bbb-b08b-4268-9d07-a35631f6de0d';//'f0ba7209-ec18-4855-a661-3607f1fb3b81';//
+$token     = '4b867a5b-e2cb-4509-82a6-789f9b3dd344';//'f0ba7209-ec18-4855-a661-3607f1fb3b81';//
 $client    = new InvoiceClient($token, $configObj);
 //使用config和token对象，实例化一个服务对象
 $invoiceservice = new InvoiceService($client);
@@ -26,7 +26,7 @@ $vo->setDeviceType('0');
 $vo->setSellerTaxNo('91500000747150426A');
 $vo->setInvoiceInvalidType('1');
 $vo->setInvoiceTerminalCode('kpyuan002');
-$vo->setInvoiceNo('82537206');
+$vo->setInvoiceNo('82537509');
 $vo->setInvoiceTypeCode('026');
 $vo->setInvoiceCode('150003521055');
 //$vo->setSellerTaxNo('91500000747150426A')->setSerialNo('cd200000004')->setInvoiceNo('82537206')->setPushType('0')->setInvoiceCode('150003521055');
