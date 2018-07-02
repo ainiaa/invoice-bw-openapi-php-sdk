@@ -2,6 +2,8 @@
 
 namespace InvoiceOpenApi\VO;
 
+use CoreOpenApi\VO\BaseVO;
+
 class FormatfileBuildRequestVO extends BaseVO
 {
     protected $sellerTaxNo;//纳税人识别号
@@ -11,6 +13,11 @@ class FormatfileBuildRequestVO extends BaseVO
     protected $pushType;//推送标志 0：不推送 1：推送（邮箱电话必填一个）
     protected $buyerEmail;//购方客户email
     protected $buyerPhone;
+    protected $rule = [
+        ['sellerTaxNo', 'require|max:20', 'sellerTaxNo required|sellerTaxNo最大长度为：20'],
+        ['serialNo', 'max:50', 'serialNo最大长度为：50'],
+        ['pushType', 'require|length:1', 'pushType required|pushType长度为：1'],
+    ];
 
     /**
      * @return mixed

@@ -2,6 +2,8 @@
 
 namespace InvoiceOpenApi\VO;
 
+use CoreOpenApi\VO\BaseVO;
+
 /**
  * 开票详单信息
  * Class InvoiceDetailsRequestVO
@@ -27,6 +29,23 @@ class InvoiceDetailsRequestVO extends BaseVO
     protected $vatSpecialManagement;//增值税特殊管理
     protected $freeTaxMark;//“零税率标识：空代表无， 1 出口免税和其他免税优惠政策， 2 不征增值税， 3 普通零税率"
     protected $preferentialMark;//是否使用优惠政策 0:未使用，1:使用
+
+    protected $rule = [
+        ['goodsLineNo', 'require|max:4', 'goodsLineNo required|goodsLineNo最大长度为：4'],
+        ['goodsCode', 'require|max:40', 'goodsCode required|goodsCode最大长度为：40'],
+        ['goodsLineNature', 'require|length:1', 'goodsLineNature required|goodsLineNature长度为：1'],
+        ['priceTaxMark', 'require|length:1', 'priceTaxMark required|priceTaxMark长度为：1'],
+        ['preferentialMark', 'require|length:1', 'preferentialMark required|preferentialMark长度为：1'],
+        ['goodsName', 'require|max:100', 'goodsName required|goodsName最大长度为：100'],
+        ['goodsPrice', 'max:20|float', 'goodsPrice最大长度为：20|goodsPrice为float类型'],
+        [
+            'goodsTotalPrice',
+            'require|max:13|float',
+            'goodsTotalPrice required|goodsPrice最大长度为：13|goodsTotalPrice为float类型',
+        ],
+        ['goodsTotalTax', 'require|max:13|float', 'goodsTotalTax required|goodsPrice最大长度为：13|goodsTotalTax为float类型'],
+        ['goodsTaxRate', 'require|max:13|float', 'goodsTaxRate required|goodsPrice最大长度为：13|goodsTaxRate为float类型'],
+    ];
 
     /**
      * @return mixed

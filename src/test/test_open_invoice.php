@@ -28,7 +28,7 @@ $vo->setInvoiceTotalPrice('10')->setInvoiceTotalPriceTax('11.44')->setInvoiceTot
 $detailList = [];
 $goodsLineNo = 1;
 $detailVO = new InvoiceOpenApi\VO\InvoiceDetailsRequestVO();
-$detailVO->setGoodsLineNo($goodsLineNo++);
+//$detailVO->setGoodsLineNo($goodsLineNo++);
 $detailVO->setGoodsLineNature('0');
 $detailVO->setGoodsCode('1070508030000000000');
 $detailVO->setGoodsName('葫芦娃222');
@@ -148,7 +148,9 @@ $detailVO->setPreferentialMark('0');
 $detailList[] = $detailVO;
 
 $vo->setInvoiceDetailsList($detailList);
-
+//$data = $vo->getData();
+//$err = $vo->getError();
+//var_export(['data' => $data, 'err' => $err]);exit;
 //调用服务方法，获取资源
 $resp = $invoiceservice->openInvoice($vo);
 

@@ -22,9 +22,8 @@ class InvoiceService extends RequestService
     public function openInvoice(OpenInvoiceRequestVO $vo)
     {
         $method = $this->getMethodByAlias('OPEN_INVOICE');
-        $params = $vo->toArray();
 
-        return $this->call($method, $params);
+        return $this->call($method, $vo);
     }
 
     /**
@@ -38,9 +37,8 @@ class InvoiceService extends RequestService
     public function formatFileBuild(FormatfileBuildRequestVO $vo)
     {
         $method = $this->getMethodByAlias('FORMATFILE_BUILD');
-        $params = $vo->toArray();
 
-        return $this->call($method, $params);
+        return $this->call($method, $vo);
     }
 
     /**
@@ -53,9 +51,8 @@ class InvoiceService extends RequestService
     public function emptyInvoceQuery(EmptyInvoiceQueryRequestVO $vo)
     {
         $method = $this->getMethodByAlias('EMPTY_INVOICE_QUERY');
-        $params = $vo->toArray();
 
-        return $this->call($method, $params);
+        return $this->call($method, $vo);
     }
 
     /**
@@ -68,9 +65,8 @@ class InvoiceService extends RequestService
     public function formatFileQuery(FormatfileQueryRequestVO $vo)
     {
         $method = $this->getMethodByAlias('FORMATFILE_QUERY');
-        $params = $vo->toArray();
 
-        return $this->call($method, $params);
+        return $this->call($method, $vo);
     }
 
     /**
@@ -83,9 +79,8 @@ class InvoiceService extends RequestService
     public function companySearch(CompanySearchRequestVO $vo)
     {
         $method = $this->getMethodByAlias('COMPANY_SEARCH');
-        $params = $vo->toArray();
 
-        return $this->call($method, $params);
+        return $this->call($method, $vo);
     }
 
     /**
@@ -98,8 +93,7 @@ class InvoiceService extends RequestService
     public function invalidInvoice(InvalidInvoiceRequestVO $vo)
     {
         $method = $this->getMethodByAlias('INVALID_INVOICE');
-        $params = $vo->toArray();
 
-        return $this->call($method, $params);
+        return $this->call($method, $vo);
     }
 }

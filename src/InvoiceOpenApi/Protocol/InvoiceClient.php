@@ -25,7 +25,7 @@ class InvoiceClient extends CoreClient
             if ($respObject === null)
             {
                 return [
-                    'errorCode' => '-1',
+                    'errorCode' => '-1000',
                     'errMsg'    => '服务器繁忙',
                 ];
             }
@@ -39,7 +39,7 @@ class InvoiceClient extends CoreClient
             else if (isset($respObject['errorResponse']) && $respObject['errorResponse'])
             { //报错
                 return [
-                    'errorCode' => '-2',
+                    'errorCode' => '-1001',
                     'errMsg'    => '接口调用失败',
                     'data'      => $respObject['errorResponse'],
                 ];
@@ -47,7 +47,7 @@ class InvoiceClient extends CoreClient
             else
             {
                 return [
-                    'errorCode' => '-3',
+                    'errorCode' => '-1002',
                     'errMsg'    => 'unknown',
                     'data'      => $respObject,
                 ];
@@ -55,7 +55,7 @@ class InvoiceClient extends CoreClient
         } catch (Exception $e)
         {
             return [
-                'errorCode' => '-4',
+                'errorCode' => '-1003',
                 'errMsg'    => $e->getMessage(),
                 'data'      => get_object_vars($e),
             ];

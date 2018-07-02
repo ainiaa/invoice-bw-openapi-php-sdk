@@ -2,6 +2,8 @@
 
 namespace InvoiceOpenApi\VO;
 
+use CoreOpenApi\VO\BaseVO;
+
 class InvalidInvoiceRequestVO extends BaseVO
 {
     protected $deviceType;//设备类型 0税控服务器，1税控盘
@@ -15,6 +17,20 @@ class InvalidInvoiceRequestVO extends BaseVO
     protected $taxDiskKey;//税控盘口令，设备类型为1时必填
     protected $taxDiskPassword;//税务数字证书密码，设备类型为1时必填
     protected $invoiceInvalidOperator;//作废人
+    protected $rule = [
+        ['deviceType', 'require|length:1', 'deviceType required|deviceType长度为：1'],
+        ['serialNo', 'require', 'serialNo required'],
+        ['sellerTaxNo', 'require|max:20', 'sellerTaxNo required|sellerTaxNo最大长度为：20'],
+        ['invoiceTypeCode', 'require|length:3', 'sellerTaxNo required|invoiceTypeCode长度为：3'],
+        ['invoiceTerminalCode', 'require|max:30', 'sellerTaxNo required|invoiceTerminalCode最大长度为：30'],
+        ['invoiceCode', 'require|max:12', 'invoiceCode required|invoiceCode最大长度为：12'],
+        ['invoiceNo', 'require|max:8', 'invoiceNo required|invoiceCode最大长度为：8'],
+        [
+            'invoiceInvalidOperator',
+            'invoiceInvalidOperator|max:32',
+            'invoiceInvalidOperator required|invoiceInvalidOperator最大长度为：32',
+        ],
+    ];
 
     /**
      * @return mixed

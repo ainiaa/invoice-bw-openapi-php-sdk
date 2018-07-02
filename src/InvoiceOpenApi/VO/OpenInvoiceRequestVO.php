@@ -2,6 +2,8 @@
 
 namespace InvoiceOpenApi\VO;
 
+use CoreOpenApi\VO\BaseVO;
+
 class OpenInvoiceRequestVO extends BaseVO
 {
     protected $deviceType;//设备类型 0税控服务器，1税控盘
@@ -37,6 +39,41 @@ class OpenInvoiceRequestVO extends BaseVO
     protected $notificationNo;//通知单编号
     protected $remarks;//备注
     protected $invoiceDetailsList = [];//清单
+
+    protected $rule = [
+        ['deviceType', 'require|length:1', 'deviceType required|deviceType的长度为：1'],
+        ['serialNo', 'require|max:50|alphaNumUS', 'serialNo required|serialNo最大长度为：50|serialNo支持数字字符下划线组合'],
+        ['invoiceTypeCode', 'require|length:3', 'sellerTaxNo required|invoiceTypeCode长度为：3'],
+        ['sellerTaxNo', 'require|max:20', 'sellerTaxNo required|sellerTaxNo最大长度为：20'],
+        ['invoiceTerminalCode', 'require|max:30', 'sellerTaxNo required|invoiceTerminalCode最大长度为：30'],
+        ['invoiceSpecialMark', 'require|length:2', 'invoiceSpecialMark required|invoiceSpecialMark长度为：2'],
+        ['buyerName', 'require|max:100', 'invoiceSpecialMark required|invoiceSpecialMark最大长度为：100'],
+        [
+            'drawer',
+            'require|min:8|max:16',
+            'invoiceSpecialMark required|invoiceSpecialMark最小长度为：68|invoiceSpecialMark最大长度为：16',
+        ],
+        ['invoiceType', 'require|length:1', 'invoiceType required|invoiceType长度为：1'],
+        ['invoiceListMark', 'require|length:3', 'invoiceListMark required|invoiceListMark长度为：1'],
+        ['taxationMode', 'require|length:1', 'taxationMode required|taxationMode长度为：1'],
+        [
+            'invoiceTotalPrice',
+            'require|max:13|float',
+            'invoiceTotalPrice required|invoiceTotalPrice最大长度为：13|invoiceTotalPrice为float类型',
+        ],
+        [
+            'invoiceTotalTax',
+            'require|max:13|float',
+            'invoiceTotalTax required|invoiceTotalTax最大长度为：13|invoiceTotalTax为float类型',
+        ],
+        [
+            'invoiceTotalPriceTax',
+            'require|max:13|float',
+            'invoiceTotalPriceTax required|invoiceTotalPriceTax最大长度为：13|invoiceTotalPriceTax为float类型',
+        ],
+
+
+    ];
 
     /**
      * @return mixed

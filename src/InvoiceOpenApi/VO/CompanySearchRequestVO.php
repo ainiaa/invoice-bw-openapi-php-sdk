@@ -2,6 +2,8 @@
 
 namespace InvoiceOpenApi\VO;
 
+use CoreOpenApi\VO\BaseVO;
+
 class CompanySearchRequestVO extends BaseVO
 {
     protected $companyName;//企业名称
@@ -9,6 +11,10 @@ class CompanySearchRequestVO extends BaseVO
     protected $accuracy;//是否精确查找； true表示精确查找;false表示模糊查找；默认false
     private $sortNo;//排序方式；0表示降序，1表示升序；默认0
     protected $sort;//设置好的(需要处理，调用接口用的)。
+
+    protected $rule = [
+        ['companyName', 'require', 'companyName required'],
+    ];
 
     /**
      * @return mixed

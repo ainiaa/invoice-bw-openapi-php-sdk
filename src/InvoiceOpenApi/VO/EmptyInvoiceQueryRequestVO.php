@@ -2,6 +2,8 @@
 
 namespace InvoiceOpenApi\VO;
 
+use CoreOpenApi\VO\BaseVO;
+
 class EmptyInvoiceQueryRequestVO extends BaseVO
 {
     protected $deviceType;//设备类型0税控服务器，1税控盘
@@ -11,6 +13,12 @@ class EmptyInvoiceQueryRequestVO extends BaseVO
     protected $taxDiskNo;//税控盘编号，设备类型为1时必填
     protected $taxDiskKey;//税控盘口令，设备类型为1时必填
     protected $taxDiskPassword;//税务数字证书密码，设备类型为1时必填
+    protected $rule = [
+        ['deviceType', 'require|length:1', 'deviceType required|deviceType长度为：1'],
+        ['sellerTaxNo', 'require|max:20', 'sellerTaxNo required|sellerTaxNo最大长度为：20'],
+        ['invoiceTypeCode', 'require|length:3', 'sellerTaxNo required|invoiceTypeCode长度为：3'],
+        ['invoiceTerminalCode', 'require|max:30', 'sellerTaxNo required|invoiceTerminalCode最大长度为：30'],
+    ];
 
     /**
      * @return mixed

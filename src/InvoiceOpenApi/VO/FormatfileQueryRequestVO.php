@@ -2,6 +2,8 @@
 
 namespace InvoiceOpenApi\VO;
 
+use CoreOpenApi\VO\BaseVO;
+
 class FormatfileQueryRequestVO extends BaseVO
 {
     protected $invoiceQueryType;//查询类型 0：发票代码号码 1：发票流水号 2：保单号
@@ -10,6 +12,10 @@ class FormatfileQueryRequestVO extends BaseVO
     protected $invoiceCode;//发票代码
     protected $invoiceNo;//发票号码
     protected $returnType;//返回类型 1： URL 2：文件流 3： H5链接
+    protected $rule = [
+        ['invoiceQueryType', 'require|length:1', 'deviceType required|invoiceQueryType长度为：1'],
+        ['sellerTaxNo', 'require|max:20', 'sellerTaxNo required|sellerTaxNo最大长度为：20'],
+    ];
 
     /**
      * @return mixed
