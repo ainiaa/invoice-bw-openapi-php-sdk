@@ -11,6 +11,7 @@ use Exception;
 class InvoiceClient extends CoreClient
 {
     const  TOKEN_EXPIRED = 100002;//token过期
+    const TOKEN_ERROR = 44;//TOKEN错误
 
     /**
      * @param $resp
@@ -195,7 +196,8 @@ class InvoiceClient extends CoreClient
      */
     public function isTokenExpired($resp)
     {
-        if (isset($resp['data']['code']) && $resp['data']['code'] == self::TOKEN_EXPIRED)
+        $code = isset($resp['data']['code']) ? $resp['data']['code'] : 0;
+        if ($code == self::TOKEN_EXPIRED || $code == self::TOKEN_ERROR)
         {//token过期
             return true;
         }

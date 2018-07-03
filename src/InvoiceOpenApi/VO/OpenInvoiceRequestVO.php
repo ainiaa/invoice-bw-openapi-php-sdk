@@ -2,9 +2,7 @@
 
 namespace InvoiceOpenApi\VO;
 
-use CoreOpenApi\VO\BaseVO;
-
-class OpenInvoiceRequestVO extends BaseVO
+class OpenInvoiceRequestVO extends InvoiceBaseVO
 {
     protected $deviceType;//设备类型 0税控服务器，1税控盘
     protected $serialNo;//开票流水号，唯一标志开票请求。支持数字字母下划线组合
@@ -31,9 +29,6 @@ class OpenInvoiceRequestVO extends BaseVO
     protected $invoiceTotalTax = 0.00;//合计税额，保留两位小数
     protected $invoiceTotalPriceTax = 0.00;//价税合计，保留两位小数
     protected $signatureParameter;//签名值参数; 默认为：0000004282000000
-    protected $taxDiskNo;//税控盘编号，设备类型为1时必填
-    protected $taxDiskKey;//税控盘口令，设备类型为1时必填
-    protected $taxDiskPassword;//税务数字证书密码，设备类型为1时必填
     protected $goodsCodeVersion;//商品编码版本号
     protected $consolidatedTaxRate;//综合税率
     protected $notificationNo;//通知单编号

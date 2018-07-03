@@ -2,17 +2,13 @@
 
 namespace InvoiceOpenApi\VO;
 
-use CoreOpenApi\VO\BaseVO;
-
-class EmptyInvoiceQueryRequestVO extends BaseVO
+class EmptyInvoiceQueryRequestVO extends InvoiceBaseVO
 {
     protected $deviceType;//设备类型0税控服务器，1税控盘
     protected $sellerTaxNo;//销方税号，查询条件
     protected $invoiceTypeCode;//发票种类编码: 004:增值税专用发票，007:增值税普通发票，026：增值税电子发票，025：增值税卷式发票
     protected $invoiceTerminalCode;//开票点编码
-    protected $taxDiskNo;//税控盘编号，设备类型为1时必填
-    protected $taxDiskKey;//税控盘口令，设备类型为1时必填
-    protected $taxDiskPassword;//税务数字证书密码，设备类型为1时必填
+
     protected $rule = [
         ['deviceType', 'require|length:1', 'deviceType required|deviceType长度为：1'],
         ['sellerTaxNo', 'require|max:20', 'sellerTaxNo required|sellerTaxNo最大长度为：20'],
