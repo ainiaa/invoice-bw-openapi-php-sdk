@@ -2,7 +2,7 @@
     "name": "ddmc/invoice-bw-openapi-php-sdk",
     "description": "invoice-bw-openapi-php-sdk",
     "license": "MIT",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "authors": [
         {
             "name": "浪淘沙",
@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "ddmc/core-openapi-php-sdk":"~1.0.0"
+        "ddmc/core-openapi-php-sdk":"~1.1.0"
     },
     "autoload": {
         "psr-4": {
