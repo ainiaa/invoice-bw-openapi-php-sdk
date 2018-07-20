@@ -9,6 +9,7 @@ use InvoiceOpenApi\VO\CompanySearchRequestVO;
 use InvoiceOpenApi\VO\EmptyInvoiceQueryRequestVO;
 use InvoiceOpenApi\VO\InvalidInvoiceRequestVO;
 use InvoiceOpenApi\VO\OpenInvoiceRequestVO;
+use InvoiceOpenApi\VO\PurchaseQueryRequestVO;
 
 class InvoiceService extends RequestService
 {
@@ -93,6 +94,16 @@ class InvoiceService extends RequestService
     public function invalidInvoice(InvalidInvoiceRequestVO $vo)
     {
         $method = $this->getMethodByAlias('INVALID_INVOICE');
+
+        return $this->call($method, $vo);
+    }
+
+    /**
+     * 提供税控设备发票领购信息查询功能。
+     */
+    public function purchaseQuery(PurchaseQueryRequestVO $vo)
+    {
+        $method = $this->getMethodByAlias('PURCHASE_QUERY');
 
         return $this->call($method, $vo);
     }
