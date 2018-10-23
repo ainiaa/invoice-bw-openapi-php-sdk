@@ -262,6 +262,9 @@ class InvoiceService
      * 根据orderIds获得所有需要开票的数据（没有格式化）
      *
      *
+     * @param $goodsList
+     * @param $taxCateList
+     *
      * @return array
      */
     public static function getGoodsListByDetailForBlueInovice($goodsList, $taxCateList)
@@ -622,6 +625,7 @@ class InvoiceService
     /**
      * @param InvoiceUserDetail $invoiceUserDetail
      * @param Config            $configObj
+     * @param                   $goodsDetailList
      * @param float             $totalPrice
      * @param float             $totalPriceTax
      * @param float             $totalTax
@@ -649,6 +653,7 @@ class InvoiceService
     /**
      * @param InvoiceUserDetail $invoiceUserDetail
      * @param Config            $configObj
+     * @param                   $goodsDetailList
      * @param float             $totalPrice
      * @param float             $totalPriceTax
      * @param float             $totalTax
@@ -901,7 +906,6 @@ class InvoiceService
 
         return $invoiceservice->purchaseQuery($vo);
     }
-
 
     /**
      * @param $return

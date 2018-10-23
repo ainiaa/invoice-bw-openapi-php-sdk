@@ -105,6 +105,7 @@ class OpenInvoiceRequestVO extends InvoiceBaseVO
      */
     public function setSerialNo($serialNo)
     {
+        $serialNo = $this->stripSpecialCharacter($serialNo);
         $this->serialNo = $serialNo;
 
         return $this;
@@ -225,6 +226,7 @@ class OpenInvoiceRequestVO extends InvoiceBaseVO
      */
     public function setBuyerTaxNo($buyerTaxNo)
     {
+        $buyerTaxNo = $this->stripSpecialCharacter($buyerTaxNo);
         $this->buyerTaxNo = $buyerTaxNo;
 
         return $this;
@@ -245,6 +247,7 @@ class OpenInvoiceRequestVO extends InvoiceBaseVO
      */
     public function setBuyerName($buyerName)
     {
+        $buyerName = $this->stripSpecialCharacter($buyerName);
         $this->buyerName = $buyerName;
 
         return $this;

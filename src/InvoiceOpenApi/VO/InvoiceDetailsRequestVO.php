@@ -142,6 +142,7 @@ class InvoiceDetailsRequestVO extends BaseVO
      */
     public function setGoodsName($goodsName)
     {
+        $goodsName = $this->stripSpecialCharacter($goodsName);
         $this->goodsName = $goodsName;
 
         return $this;
@@ -202,6 +203,7 @@ class InvoiceDetailsRequestVO extends BaseVO
      */
     public function setGoodsUnit($goodsUnit)
     {
+        $goodsUnit = $this->stripSpecialCharacter($goodsUnit);
         $this->goodsUnit = $goodsUnit;
 
         return $this;
