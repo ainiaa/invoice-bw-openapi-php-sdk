@@ -8,6 +8,7 @@ use InvoiceOpenApi\VO\FormatfileQueryRequestVO;
 use InvoiceOpenApi\VO\CompanySearchRequestVO;
 use InvoiceOpenApi\VO\EmptyInvoiceQueryRequestVO;
 use InvoiceOpenApi\VO\InvalidInvoiceRequestVO;
+use InvoiceOpenApi\VO\InvoiceQueryRequestVO;
 use InvoiceOpenApi\VO\OpenInvoiceRequestVO;
 use InvoiceOpenApi\VO\PurchaseQueryRequestVO;
 
@@ -104,6 +105,20 @@ class InvoiceService extends RequestService
     public function purchaseQuery(PurchaseQueryRequestVO $vo)
     {
         $method = $this->getMethodByAlias('PURCHASE_QUERY');
+
+        return $this->call($method, $vo);
+    }
+
+    /**
+     * 查询开票情况
+     *
+     * @param InvoiceQueryRequestVO $vo
+     *
+     * @return mixed
+     */
+    public function invoiceQuery(InvoiceQueryRequestVO $vo)
+    {
+        $method = $this->getMethodByAlias('INVOICE_QUERY');
 
         return $this->call($method, $vo);
     }

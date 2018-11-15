@@ -2,7 +2,7 @@
     "name": "ddmc/invoice-bw-openapi-php-sdk",
     "description": "invoice-bw-openapi-php-sdk",
     "license": "MIT",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "authors": [
         {
             "name": "Jeff Liu",
